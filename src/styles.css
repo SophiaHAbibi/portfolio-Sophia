@@ -1,0 +1,141 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-saffron: var(--saffron);
+  --color-rose: var(--rose);
+  --color-indigo-rug: var(--indigo-rug);
+  --color-cream: var(--cream);
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Persian rug inspired palette */
+  --background: oklch(0.96 0.018 75);          /* warm cream */
+  --foreground: oklch(0.22 0.04 30);           /* deep walnut */
+  --card: oklch(0.98 0.012 80);
+  --card-foreground: oklch(0.22 0.04 30);
+  --popover: oklch(0.98 0.012 80);
+  --popover-foreground: oklch(0.22 0.04 30);
+  --primary: oklch(0.45 0.16 28);              /* terracotta red */
+  --primary-foreground: oklch(0.97 0.015 80);
+  --secondary: oklch(0.92 0.025 75);
+  --secondary-foreground: oklch(0.25 0.05 30);
+  --muted: oklch(0.92 0.02 75);
+  --muted-foreground: oklch(0.45 0.03 40);
+  --accent: oklch(0.72 0.15 70);               /* saffron */
+  --accent-foreground: oklch(0.22 0.04 30);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.85 0.03 60);
+  --input: oklch(0.85 0.03 60);
+  --ring: oklch(0.45 0.16 28);
+
+  --saffron: oklch(0.74 0.16 68);
+  --rose: oklch(0.55 0.17 18);
+  --indigo-rug: oklch(0.35 0.09 240);
+  --cream: oklch(0.96 0.018 75);
+
+  --gradient-warm: linear-gradient(135deg, oklch(0.45 0.16 28) 0%, oklch(0.55 0.17 18) 50%, oklch(0.74 0.16 68) 100%);
+  --shadow-warm: 0 20px 60px -20px oklch(0.45 0.16 28 / 0.35);
+  --shadow-soft: 0 10px 40px -10px oklch(0.35 0.09 240 / 0.25);
+}
+
+.dark {
+  --background: oklch(0.18 0.025 30);
+  --foreground: oklch(0.95 0.015 80);
+  --card: oklch(0.22 0.03 30);
+  --card-foreground: oklch(0.95 0.015 80);
+  --primary: oklch(0.72 0.15 70);
+  --primary-foreground: oklch(0.18 0.025 30);
+  --secondary: oklch(0.28 0.04 30);
+  --secondary-foreground: oklch(0.95 0.015 80);
+  --muted: oklch(0.28 0.04 30);
+  --muted-foreground: oklch(0.7 0.03 60);
+  --accent: oklch(0.55 0.17 18);
+  --accent-foreground: oklch(0.95 0.015 80);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.15 70);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1,h2,h3,h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+/* Persian motif background pattern */
+@utility rug-pattern {
+  background-image:
+    radial-gradient(circle at 20% 20%, oklch(0.45 0.16 28 / 0.08) 0, transparent 40%),
+    radial-gradient(circle at 80% 60%, oklch(0.35 0.09 240 / 0.08) 0, transparent 40%),
+    radial-gradient(circle at 50% 90%, oklch(0.74 0.16 68 / 0.08) 0, transparent 40%);
+}
+
+@utility text-gradient-warm {
+  background: var(--gradient-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-warm {
+  box-shadow: var(--shadow-warm);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@keyframes float-slow {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes weave {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-fade-up { animation: fade-up 0.8s ease-out both; }
+@utility animate-weave {
+  background-size: 200% 200%;
+  animation: weave 8s linear infinite;
+}
