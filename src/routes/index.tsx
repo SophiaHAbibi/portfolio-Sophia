@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import sophiaAsset from "@/assets/sophia.jpg";
+import sophiaAsset from "@/assets/Sophia.jpg";
 import rugsAsset from "@/assets/profile-rugs.jpg";
 
 export const Route = createFileRoute("/")({
